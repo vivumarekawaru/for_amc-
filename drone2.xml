@@ -1,0 +1,448 @@
+
+<!--here m and p are used for represinting minus and plus(refering to the part in that quadrant)-->
+<robot name="test">
+<!--body with (1.1 1.1 0.4)-->
+    <link name="base">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.1 1.1 0.4"/>
+            </geometry>
+            <material name="cyan1">
+                <color rgba="0 0.9 1 1"/>
+            </material>
+        </visual>
+    </link>
+<!--arms at (0 0 0) with (5 0.41 0.1)-->
+    <link name="arm1">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="5 0.41 0.1"/>
+            </geometry>
+            <material name="cyan1">
+                <color rgba="0 0.9 1 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="j1" type="fixed">
+        <parent link="base"/>
+        <child link="arm1"/>
+        <origin xyz="0 0 -0.15" rpy ="0 0 0.785"/>
+    </joint>
+
+	<link name="arm2">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="5 0.41 0.1"/>
+            </geometry>
+            <material name="cyan1">
+                <color rgba="0 0.9 1 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jpm" type="fixed">
+        <parent link="base"/>
+        <child link="arm2"/>
+        <origin xyz="0 0 -0.15" rpy ="0 0 -0.785" />
+    </joint>
+
+<!--rotors at (2.295 0 -0.05) with (r=0.15 and l=0.4)-->
+
+    <link name="rotorpp">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.15" length="0.4"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jrpp" type="fixed">
+        <parent link="arm1"/>
+        <child link="rotorpp"/>
+        <origin xyz="2.295 0 -0.05" rpy ="0 0 0" />
+    </joint>
+    
+     <link name="rotorpm">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.15" length="0.4"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jrpm" type="fixed">
+        <parent link="arm2"/>
+        <child link="rotorpm"/>
+        <origin xyz="2.295 0 -0.05" rpy ="0 0 0" />
+    </joint>
+
+    <link name="rotormm">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.15" length="0.4"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jrmm" type="fixed">
+        <parent link="arm1"/>
+        <child link="rotormm"/>
+        <origin xyz="-2.295 0 -0.05" rpy ="0 0 0"/>
+    </joint>
+
+    <link name="rotormp">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.15" length="0.4"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jrmp" type="fixed">
+        <parent link="arm2"/>
+        <child link="rotormp"/>
+        <origin xyz="-2.295 0 -0.05" rpy ="0 0 0"/>
+    </joint>
+
+<!--axle at (0 0 0.05) from rotors with (r=0.015 and l=0.45) -->
+     <link name="axlepp">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.45"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0 0  0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="japp" type="revolute">
+        <parent link="rotorpp"/>
+        <child link="axlepp"/>
+        <origin xyz="0 0 0.05" rpy ="0 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+    
+     <link name="axlepm">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.45"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0 0  0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="japm" type="revolute">
+        <parent link="rotorpm"/>
+        <child link="axlepm"/>
+        <origin xyz="0 0 0.05" rpy ="0 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="axlemm">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.45"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0 0  0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jamm" type="revolute">
+        <parent link="rotormm"/>
+        <child link="axlemm"/>
+        <origin xyz="-0 0 0.05" rpy ="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="axlemp">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.45"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0 0  0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jamp" type="revolute">
+        <parent link="rotormp"/>
+        <child link="axlemp"/>
+        <origin xyz="-0 0 0.05" rpy ="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+<!--propellars at (+-0.5 0 0.2) from axle with (1 0.015 0.08)-->
+
+    <link name="prop_pp1">
+        <visual>
+            <origin xyz="0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jppp" type="fixed">
+        <parent link="axlepp"/>
+        <child link="prop_pp1"/>
+        <origin xyz="0 0 0.2" rpy="-1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_pm1">
+        <visual>
+            <origin xyz="0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jppm" type="fixed">
+        <parent link="axlepm"/>
+        <child link="prop_pm1"/>
+        <origin xyz="0 0 0.2" rpy="1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_mm1">
+        <visual>
+            <origin xyz="0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jpmm" type="fixed">
+        <parent link="axlemm"/>
+        <child link="prop_mm1"/>
+        <origin xyz="0 0 0.2" rpy="-1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_mp1">
+        <visual>
+            <origin xyz="0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jpmp" type="fixed">
+        <parent link="axlemp"/>
+        <child link="prop_mp1"/>
+        <origin xyz="0 0 0.2" rpy="1.07 0 0" />
+        
+    </joint>
+
+
+
+    <link name="prop_pp2">
+        <visual>
+            <origin xyz="-0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jppp2" type="fixed">
+        <parent link="axlepp"/>
+        <child link="prop_pp2"/>
+        <origin xyz="0 0 0.2" rpy="1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_pm2">
+        <visual>
+            <origin xyz="-0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jppm2" type="fixed">
+        <parent link="axlepm"/>
+        <child link="prop_pm2"/>
+        <origin xyz="0 0 0.2" rpy="-1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_mm2">
+        <visual>
+            <origin xyz="-0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jpmm2" type="fixed">
+        <parent link="axlemm"/>
+        <child link="prop_mm2"/>
+        <origin xyz="0 0 0.2" rpy="1.07 0 0" />
+        
+    </joint>
+
+    <link name="prop_mp2">
+        <visual>
+            <origin xyz="-0.5 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1 0.015 0.08"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="jpmp2" type="fixed">
+        <parent link="axlemp"/>
+        <child link="prop_mp2"/>
+        <origin xyz="0 0 0.2" rpy="-1.07 0 0" />
+        
+    </joint>
+
+<!--landing gear(they are meant to be used in snow, not like i can't centre them)-->
+
+    <link name="lan_arm_pp">
+        <visual>
+            <origin xyz="0 0 -0.325" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.7"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="l_pp" type="fixed">
+        <parent link="base"/>
+        <child link="lan_arm_pp"/>
+        <origin xyz="0.275 0.35 -0.2" rpy ="0.55 -0.3 0"/>
+    </joint>
+
+    <link name="lan_arm_mp">
+        <visual>
+            <origin xyz="0 0 -0.325" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.7"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="l_mp" type="fixed">
+        <parent link="base"/>
+        <child link="lan_arm_mp"/>
+        <origin xyz="-0.275 0.35 -0.2" rpy ="0.55 0.3 0"/>
+    </joint>
+
+    <link name="lan_arm_mm">
+        <visual>
+            <origin xyz="0 0 -0.325" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.7"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="l_pp" type="fixed">
+        <parent link="base"/>
+        <child link="lan_arm_mm"/>
+        <origin xyz="-0.275 -0.35 -0.2" rpy ="-0.55 0.3 0"/>
+    </joint>
+
+    <link name="lan_arm_pm">
+        <visual>
+            <origin xyz="0 0 -0.325" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.7"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.2 0.2 0.2 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="l_pm" type="fixed">
+        <parent link="base"/>
+        <child link="lan_arm_pm"/>
+        <origin xyz="0.275 -0.35 -0.2" rpy ="-0.55 -0.3 0"/>
+    </joint>
+
+
+
+    <link name="foot_m">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <geometry>
+                <cylinder radius="0.07" length="3"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="fj_m" type="fixed">
+        <parent link="lan_arm_mm"/>
+        <child link="foot_m"/>
+        <origin xyz="0 0 -0.675" rpy ="0 -0.3 0"/>
+    </joint>
+
+    <link name="foot_p">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <geometry>
+                <cylinder radius="0.07" length="3"/>
+            </geometry>
+            <material name="black1">
+                <color rgba="0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="fj_p" type="fixed">
+        <parent link="lan_arm_mp"/>
+        <child link="foot_p"/>
+        <origin xyz="0 0 -0.675" rpy ="0 -0.3 0"/>
+    </joint>
+
+<!--camera,gps,etc-->
+</robot>
